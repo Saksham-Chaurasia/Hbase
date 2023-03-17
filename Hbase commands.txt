@@ -1,0 +1,74 @@
+Hbase commands:
+
+hbase shell
+
+create 'employee', 'personal','professional','contact'
+
+put 'employee','1001','personal:name','Saksham Chaurasia'
+put 'employee','1001','personal:age','35'
+put 'employee', '1001', 'professional:title', 'Data Engineer'
+put 'employee', '1001', 'professional:salary', '100000'
+put 'employee', '1001', 'contact:email', 'saksham84a@gmail.com'
+put 'employee', '1001', 'contact:phone', '9984243668'
+
+
+
+list 
+
+
+scan 'employee'
+
+
+// limit the number of rows
+
+scan 'employee' , {STARTROW => '1001', STOPROW =>'1005'}
+
+//limit the number of columns
+
+scan 'employee', {Columns => ['personal:name','professional:title']}
+
+
+// get command
+get 'employee','1001'
+
+//limit the columns
+
+get 'employee','1001','personal:name'
+
+
+//delete command
+// this will delete the whole row
+delete 'employee','1001'
+
+delete 'employee','1001','personal:name'
+//this will delete the name column form the personal for the particular row
+
+delete 'employee','1001','personal'
+
+//this will delete the whole columns in the personal family columns
+
+
+disable 'employee'
+// it use to change the configuration setting of that table
+
+enable 'employee'
+
+describe 'employee'
+
+count 'employee' 
+// it will count the number of rows in the table
+
+truncate 'employee'
+
+// removes all the data from a table employee
+
+flush 'employee'
+//flushes the data in memory to h file
+
+major_compact 'employee' 
+
+alter 'employee', {Name => 'contact', versions => '1'}
+alter 'employee', {Name => 'personal', versions => '3'}
+
+
+
